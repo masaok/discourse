@@ -4,8 +4,8 @@ require 'swagger_helper'
 describe 'uploads' do
 
   let(:admin) { Fabricate(:admin) }
-  let(:logo_file) { file_from_fixtures("logo.png") }
-  let(:logo) { Rack::Test::UploadedFile.new(logo_file) }
+  let(:logo_file) { fixture_file("../images/logo.png") }
+  let(:logo) { fixture_file_upload("../images/logo.png") }
 
   before do
     Jobs.run_immediately!

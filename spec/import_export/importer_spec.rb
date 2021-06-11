@@ -10,7 +10,7 @@ describe ImportExport::Importer do
   end
 
   let(:import_data) do
-    import_file = Rack::Test::UploadedFile.new(file_from_fixtures("import-export.json", "json"))
+    import_file = file_from_fixtures("import-export.json", "json")
     ActiveSupport::HashWithIndifferentAccess.new(JSON.parse(import_file.read))
   end
 

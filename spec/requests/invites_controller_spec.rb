@@ -769,11 +769,11 @@ describe InvitesController do
     end
 
     context 'while logged in' do
-      let(:csv_file) { File.new("#{Rails.root}/spec/fixtures/csv/discourse.csv") }
-      let(:file) { Rack::Test::UploadedFile.new(File.open(csv_file)) }
+      let(:csv_file) { fixture_file('../csv/discourse.csv') }
+      let(:file) { fixture_file_upload('../csv/discourse.csv') }
 
-      let(:csv_file_with_headers) { File.new("#{Rails.root}/spec/fixtures/csv/discourse_headers.csv") }
-      let(:file_with_headers) { Rack::Test::UploadedFile.new(File.open(csv_file_with_headers)) }
+      let(:csv_file_with_headers) { fixture_file('../csv/discourse_headers.csv') }
+      let(:file_with_headers) { fixture_file_upload('../csv/discourse_headers.csv') }
 
       it 'fails if you cannot bulk invite to the forum' do
         sign_in(Fabricate(:user))

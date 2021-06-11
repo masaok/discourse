@@ -914,16 +914,11 @@ describe TagsController do
     end
 
     context 'while logged in' do
-      let(:csv_file) { File.new("#{Rails.root}/spec/fixtures/csv/tags.csv") }
-      let(:invalid_csv_file) { File.new("#{Rails.root}/spec/fixtures/csv/tags_invalid.csv") }
+      let(:csv_file) { fixture_file("../csv/tags.csv") }
+      let(:file) { fixture_file_upload("../csv/tags.csv") }
 
-      let(:file) do
-        Rack::Test::UploadedFile.new(File.open(csv_file))
-      end
-
-      let(:invalid_file) do
-        Rack::Test::UploadedFile.new(File.open(invalid_csv_file))
-      end
+      let(:invalid_csv_file) { fixture_file("../csv/tags_invalid.csv") }
+      let(:invalid_file) { fixture_file_upload("../csv/tags_invalid.csv") }
 
       let(:filename) { 'tags.csv' }
 

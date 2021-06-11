@@ -36,7 +36,7 @@ RSpec.describe Admin::WatchedWordsController do
       it 'creates the words from the file' do
         post '/admin/customize/watched_words/upload.json', params: {
           action_key: 'flag',
-          file: Rack::Test::UploadedFile.new(file_from_fixtures("words.csv", "csv"))
+          file: fixture_file_upload("../csv/words.csv")
         }
 
         expect(response.status).to eq(200)
@@ -52,7 +52,7 @@ RSpec.describe Admin::WatchedWordsController do
       it 'creates the words from the file' do
         post '/admin/customize/watched_words/upload.json', params: {
           action_key: 'tag',
-          file: Rack::Test::UploadedFile.new(file_from_fixtures("words_tag.csv", "csv"))
+          file: fixture_file_upload("../csv/words_tag.csv")
         }
 
         expect(response.status).to eq(200)

@@ -88,17 +88,9 @@ describe Admin::ThemesController do
 
   describe '#import' do
 
-    let(:theme_json_file) do
-      Rack::Test::UploadedFile.new(file_from_fixtures("sam-s-simple-theme.dcstyle.json", "json"), "application/json")
-    end
-
-    let(:theme_archive) do
-      Rack::Test::UploadedFile.new(file_from_fixtures("discourse-test-theme.zip", "themes"), "application/zip")
-    end
-
-    let(:image) do
-      file_from_fixtures("logo.png")
-    end
+    let(:theme_json_file) { fixture_file_upload("../json/sam-s-simple-theme.dcstyle.json", "application/json") }
+    let(:theme_archive)  { fixture_file_upload("../themes/discourse-test-theme.zip", "application/zip") }
+    let(:image) { fixture_file("../images/logo.png") }
 
     context 'when theme allowlist mode is enabled' do
       before do
