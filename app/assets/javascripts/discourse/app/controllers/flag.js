@@ -105,6 +105,11 @@ export default Controller.extend(ModalFunctionality, {
     });
   },
 
+  onClose() {
+    const element = document.querySelector(".flag-modal");
+    element.removeEventListener("keydown", this.keyDown);
+  },
+
   @discourseComputed("spammerDetails.canDelete", "selected.name_key")
   showDeleteSpammer(canDeleteSpammer, nameKey) {
     return canDeleteSpammer && nameKey === "spam";
