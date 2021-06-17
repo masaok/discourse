@@ -1,3 +1,4 @@
+import { schedule } from "@ember/runloop";
 import ActionSummary from "discourse/models/action-summary";
 import Controller from "@ember/controller";
 import EmberObject from "@ember/object";
@@ -6,7 +7,7 @@ import { MAX_MESSAGE_LENGTH } from "discourse/models/post-action-type";
 import ModalFunctionality from "discourse/mixins/modal-functionality";
 import { Promise } from "rsvp";
 import User from "discourse/models/user";
-import discourseComputed from "discourse-common/utils/decorators";
+import discourseComputed, { bind } from "discourse-common/utils/decorators";
 import { not } from "@ember/object/computed";
 import optionalService from "discourse/lib/optional-service";
 import { popupAjaxError } from "discourse/lib/ajax-error";
@@ -52,6 +53,18 @@ export default Controller.extend(ModalFunctionality, {
     };
   },
 
+  @bind
+  keyDown(event) {
+    // CTRL+ENTER or CMD+ENTER
+    if (event.which === 13 && (event.ctrlKey || event.metaKey)) {
+      // fixme make it work
+      // fixme send it only if we in the message mode
+      if (this.submitEnabled) {
+        this.send("createFlag");
+      }
+    }
+  },
+
   clientSuspend(performAction) {
     this._penalize("showSuspendModal", performAction);
   },
@@ -85,6 +98,11 @@ export default Controller.extend(ModalFunctionality, {
         this.set("spammerDetails", result);
       });
     }
+
+    schedule("afterRender", () => {
+      const element = document.querySelector(".flag-modal");
+      element.addEventListener("keydown", this.keyDown);
+    });
   },
 
   @discourseComputed("spammerDetails.canDelete", "selected.name_key")
