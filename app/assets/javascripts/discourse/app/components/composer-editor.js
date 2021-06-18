@@ -31,7 +31,6 @@ import { later, next, run, schedule, throttle } from "@ember/runloop";
 import Component from "@ember/component";
 import Composer from "discourse/models/composer";
 import EmberObject from "@ember/object";
-import { getOwner } from "@ember/application";
 import I18n from "I18n";
 import { ajax } from "discourse/lib/ajax";
 import bootbox from "bootbox";
@@ -84,10 +83,6 @@ export default Component.extend({
   shouldBuildScrollMap: true,
   scrollMap: null,
   uploadFilenamePlaceholder: null,
-
-  get mediaOptimizationWorkerService() {
-    return getOwner(this).lookup("service:media-optimization-worker");
-  },
 
   @discourseComputed("uploadFilenamePlaceholder")
   uploadPlaceholder(uploadFilenamePlaceholder) {
@@ -659,14 +654,6 @@ export default Component.extend({
     this._pasted = false;
 
     const $element = $(this.element);
-
-    addComposerUploadProcessor(
-      { action: "optimizeJPEG" },
-      {
-        optimizeJPEG: (data) =>
-          this.mediaOptimizationWorkerService.optimizeImage(data),
-      }
-    );
 
     $.blueimp.fileupload.prototype.processActions = uploadProcessorActions;
 
