@@ -61,6 +61,7 @@ export default Controller.extend(ModalFunctionality, {
       // fixme send it only if we in the message mode
       if (this.submitEnabled) {
         this.send("createFlag");
+        return false;
       }
     }
   },

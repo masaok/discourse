@@ -87,13 +87,13 @@ const TopicRoute = DiscourseRoute.extend({
     },
 
     showFlags(model) {
-      let controller = showModal("flag", { model });
+      let controller = showModal("flag", { model, acceptable: false });
       controller.setProperties({ flagTopic: false });
     },
 
     showFlagTopic() {
       const model = this.modelFor("topic");
-      let controller = showModal("flag", { model });
+      let controller = showModal("flag", { model, acceptable: false });
       controller.setProperties({ flagTopic: true });
     },
 
