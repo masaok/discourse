@@ -1399,6 +1399,21 @@ files:
   decompressed_backup_max_file_size_mb:
     default: 100000
     hidden: true
+  composer_media_optimization_enabled:
+    default: true
+    client: true
+  composer_media_optimization_image_kilobytes_threshold:
+    default: 1048576
+    client: true
+  composer_media_optimization_image_dimensions_threshold:
+    default: 2070
+    client: true
+  composer_media_optimization_image_width_resize_target:
+    default: 2070
+    client: true
+  composer_media_optimization_image_reencode_enabled:
+    default: true
+    client: true
 
 trust:
   default_trust_level:

@@ -1823,6 +1823,12 @@ en:
 
     strip_image_metadata: "Strip image metadata."
 
+    composer_media_optimization_image_enabled: "Enables client-side media optimization on uploaded files."
+    composer_media_optimization_image_bytes_threshold: "a"
+    composer_media_optimization_image_dimensions_threshold: "a"
+    composer_media_optimization_image_width_resize_target: "a"
+    composer_media_optimization_image_reencode_enabled: "a"
+
     min_ratio_to_crop: "Ratio used to crop tall images. Enter the result of width / height."
 
     simultaneous_uploads: "Maximum number of files that can be dragged & dropped in the composer"
