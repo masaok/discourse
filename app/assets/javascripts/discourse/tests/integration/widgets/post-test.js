@@ -70,9 +70,9 @@ discourseModule("Integration | Component | Widget | post", function (hooks) {
       });
     },
     async test(assert) {
-      assert.equal(queryAll(".badge.clicks").length, 2);
-      assert.equal(queryAll(".badge.clicks:nth(0)").text(), "1");
-      assert.equal(queryAll(".badge.clicks:nth(1)").text(), "2");
+      assert.equal(count(".badge.clicks"), 2);
+      assert.equal(queryAll(".badge.clicks")[0].innerText, "1");
+      assert.equal(queryAll(".badge.clicks")[1].innerText, "2");
     },
   });
 

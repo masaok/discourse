@@ -97,7 +97,7 @@ export default class PostCooked {
 
     // find the best a in each onebox and display link counts only for
     // that one
-    const bestElements = [];
+    const bestElements = {};
     $html[0].querySelectorAll("aside.onebox").forEach((onebox) => {
       // look in headings first
       for (let i = 1; i <= 6; ++i) {
